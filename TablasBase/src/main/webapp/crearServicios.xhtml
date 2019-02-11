@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/blank.xhtml">
+
+<h:head>
+	<f:metadata>
+        <f:viewParam id="id" name="id" value="#{servicioBean.codigo}"/>
+        
+ 		<f:viewAction action="#{servicioBean.loadData()}" />
+ 	</f:metadata>
+</h:head> 
+
+	<ui:define name="titulo">Crear Servicios</ui:define>
+
+	<ui:define name="contenido">
+
+		<h:form>
+		<h:panelGrid columns="3">
+
+			<h:outputLabel value="Nombre de Servicio:" />
+			<h:inputText value="#{servicioBean.servicio.nombre}" id="txtNombre" />
+			<h:message for="txtNombre" />
+
+			<h:outputLabel value="Descripcion de Servicio:" />
+			<h:inputText value="#{servicioBean.servicio.descripcion}" id="txtDescripcion" />
+			<h:message for="txtDescripcion" />
+
+			<h:outputLabel value="Empleado:" />
+			<h:selectOneMenu id="cbxEmpleado" value="#{servicioBean.codigoEmpleado}">
+			<f:selectItems value="#{servicioBean.empleados}" 
+						var="empleado"
+						itemLabel="#{empleado.nombre}"
+						itemValue="#{empleado.codigoEmpleado}"/>
+			</h:selectOneMenu><br/>
+			
+			<h:outputLabel value="Cliente:" />
+			<h:selectOneMenu id="cbxCliente" value="#{servicioBean.codigoCliente}">
+			<f:selectItems value="#{servicioBean.clientes}" 
+						var="cliente"
+						itemLabel="#{cliente.nombre}"
+						itemValue="#{cliente.codigoCliente}"/>
+			</h:selectOneMenu><br/>
+
+			<h:inputHidden value="#{servicioBean.editing}" />
+			<h:commandButton action="#{servicioBean.registrar()}" value="Registrar" />
+
+		</h:panelGrid>
+		
+		<h:dataTable var="_servicios" value="#{servicioBean.servicios}"
+            styleClass="simpletablestyle">
+            
+            <h:column>
+                <f:facet name="header">Codigo</f:facet>
+                #{_servicios.codigoServicio}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre de servicio</f:facet>
+                #{_servicios.nombre}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Descripcion de servicio</f:facet>
+                #{_servicios.descripcion}
+            </h:column>
+            
+            <h:column>
+					<f:facet name="header">Codigo Empleado</f:facet>
+                #{_servicios.codigoEmpleado.codigoEmpleado}
+            </h:column>
+            <h:column>
+					<f:facet name="header">Nombre Empleado</f:facet>
+                #{_servicios.codigoEmpleado.nombre}
+            </h:column>
+            
+            <h:column>
+					<f:facet name="header">Codigo Cliente</f:facet>
+                #{_servicios.codigoCliente.codigoCliente}
+            </h:column>
+            
+            <h:column>
+					<f:facet name="header">Nombre Cliente</f:facet>
+                #{_servicios.codigoCliente.nombre}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Acciones</f:facet>
+                 <h:commandButton action="#{servicioBean.editar(_servicios)}" value="Editar" />
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Acciones</f:facet>
+                 <h:commandButton immediate="true" action="#{servicioBean.eliminar(_servicios.codigoServicio)}" value="Eliminar" />
+            </h:column>
+            
+            <f:facet name="footer">
+            
+            </f:facet>
+        </h:dataTable>
+		
+	</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

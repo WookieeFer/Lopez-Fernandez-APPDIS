@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/blank.xhtml">
+
+	<h:head>
+		<f:metadata>
+			<f:viewParam id="id" name="id" value="#{empleadoBean.codigo}" />
+
+			<f:viewAction action="#{empleadoBean.loadData()}" />
+		</f:metadata>
+	</h:head>
+
+	<ui:define name="titulo">Crear Empleados</ui:define>
+
+	<ui:define name="contenido">
+
+		<h:form>
+			<h:panelGrid columns="3">
+
+				<h:outputLabel value="Cedula:" />
+				<h:inputText value="#{empleadoBean.empleado.cedula}" id="txtCedula" />
+				<h:message for="txtCedula" />
+
+				<h:outputLabel value="Nombre:" />
+				<h:inputText value="#{empleadoBean.empleado.nombre}" id="txtNombre" />
+				<h:message for="txtNombre" />
+
+				<h:outputLabel value="Apellido:" />
+				<h:inputText value="#{empleadoBean.empleado.apellido}"
+					id="txtApellido" />
+				<h:message for="txtApellido" />
+
+				<h:outputLabel value="Correo:" />
+				<h:inputText value="#{empleadoBean.empleado.correo}" id="txtCorreo" />
+				<h:message for="txtCorreo" />
+
+				<h:outputLabel value="Sucursal:" />
+				<h:selectOneMenu id="cbxSucursal"
+					value="#{empleadoBean.codigoSucursal}">
+					<f:selectItems value="#{empleadoBean.sucursales}" var="sucursal"
+						itemLabel="#{sucursal.direccion}"
+						itemValue="#{sucursal.codigoSucursal}" />
+				</h:selectOneMenu>
+				<br />
+
+				<h:inputHidden value="#{empleadoBean.editing}" />
+				<h:commandButton action="#{empleadoBean.registrar()}"
+					value="Registrar" />
+
+			</h:panelGrid>
+
+			<h:dataTable var="_empleado" value="#{empleadoBean.empleados}"
+				styleClass="simpletablestyle">
+
+				<h:column>
+					<f:facet name="header">Codigo</f:facet>
+                #{_empleado.codigoEmpleado}
+            </h:column>
+
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+                #{_empleado.nombre}
+            </h:column>
+				<h:column>
+					<f:facet name="header">Apellido</f:facet>
+                #{_empleado.apellido}
+            </h:column>
+
+				<h:column>
+					<f:facet name="header">Cedula</f:facet>
+                #{_empleado.cedula}
+            </h:column>
+
+				<h:column>
+					<f:facet name="header">Correo</f:facet>
+                #{_empleado.correo}
+            </h:column>
+
+
+				<h:column>
+					<f:facet name="header">CodigoSucursal</f:facet>
+                #{_empleado.codigoSucursal.codigoSucursal}
+            </h:column>
+            
+            <h:column>
+					<f:facet name="header">Sucursal</f:facet>
+                #{_empleado.codigoSucursal.direccion}
+            </h:column>
+
+
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton action="#{empleadoBean.editar(_empleado)}"
+						value="Editar" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton
+						action="#{empleadoBean.eliminar(_empleado.codigoEmpleado)}"
+						value="Eliminar" />
+				</h:column>
+
+				<f:facet name="footer">
+				</f:facet>
+			</h:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

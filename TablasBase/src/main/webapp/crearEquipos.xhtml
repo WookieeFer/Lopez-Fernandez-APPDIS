@@ -1,0 +1,96 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!-- <html xmlns="http://www.w3.org/1999/xhtml" -->
+<!-- 	xmlns:ui="http://java.sun.com/jsf/facelets" -->
+<!-- 	xmlns:f="http://java.sun.com/jsf/core" -->
+<!-- 	xmlns:h="http://java.sun.com/jsf/html"> -->
+
+<!-- <ui:composition template="/blank.xhtml"> -->
+
+<!-- <h:head> -->
+<!-- 	<f:metadata> -->
+<!--         <f:viewParam id="id" name="id" value="#{equipoBean.codigo}"/> -->
+        
+<!--  		<f:viewAction action="#{equipoBean.loadData()}" /> -->
+<!--  	</f:metadata> -->
+<!-- </h:head>  -->
+
+<!-- 	<ui:define name="titulo">Crear Equipos</ui:define> -->
+
+<!-- 	<ui:define name="contenido"> -->
+
+<!-- 		<h:form> -->
+<!-- 		<h:panelGrid columns="3"> -->
+
+<!-- 			<h:outputLabel value="Nombre de Equipo:" /> -->
+<!-- 			<h:inputText value="#{equipoBean.equipo.nombre}" id="txtNombre" /> -->
+<!-- 			<h:message for="txtNombre" /> -->
+
+<!-- 			<h:outputLabel value="Descripcion de Equipo:" /> -->
+<!-- 			<h:inputText value="#{equipoBean.equipo.descripcion}" id="txtDescripcion" /> -->
+<!-- 			<h:message for="txtDescripcion" /> -->
+
+<!-- 			<h:outputLabel value="Cliente Asignado:" /> -->
+<!-- 			<h:selectOneMenu id="cbxClienteAsignado" value="#{equipoBean.codigoCliente}"> -->
+<!-- 			<f:selectItems value="#{equipoBean.clientes}"  -->
+<!-- 						var="clienteAsignado" -->
+<!-- 						itemLabel="#{clienteAsignado.nombre}" -->
+<!-- 						itemValue="#{clienteAsignado.codigoCliente}"/> -->
+<!-- 			</h:selectOneMenu><br/> -->
+
+<!-- 			<h:inputHidden value="#{equipoBean.editing}" /> -->
+<!-- 			<h:commandButton action="#{equipoBean.registrar()}" value="Registrar" /> -->
+
+<!-- 		</h:panelGrid> -->
+		
+<!-- 		<h:dataTable var="_equipos" value="#{equipoBean.equipos}" -->
+<!--             styleClass="simpletablestyle"> -->
+            
+<!--             <h:column> -->
+<!--                 <f:facet name="header"> Codigo </f:facet> -->
+<!--                 #{_equipos.codigoEquipo} -->
+<!--             </h:column> -->
+<!--             <h:column> -->
+<!--                 <f:facet name="header"> Nombre de Equipo </f:facet> -->
+<!--                 #{_equipos.nombre} -->
+<!--             </h:column> -->
+            
+<!--             <h:column> -->
+<!--                 <f:facet name="header"> Descripcion de Equipo </f:facet> -->
+<!--                 #{_equipos.descripcion} -->
+<!--             </h:column> -->
+            
+<!--             <h:column> -->
+<!-- 					<f:facet name="header"> Codigo Cliente </f:facet> -->
+<!--                 #{_equipos.codigoCliente.codigoCliente} -->
+<!--             </h:column> -->
+            
+<!--             <h:column> -->
+<!-- 					<f:facet name="header"> Nombre Cliente </f:facet> -->
+<!--                 #{_equipos.codigoCliente.nombre} -->
+<!--             </h:column> -->
+            
+<!--             <h:column> -->
+<!-- 					<f:facet name="header"> Apellido Cliente </f:facet> -->
+<!--                 #{_equipos.codigoCliente.apellido} -->
+<!--             </h:column> -->
+            
+<!--             <h:column> -->
+<!--                 <f:facet name="header">Acciones</f:facet> -->
+<!--                  <h:commandButton action="#{equipoBean.editar(_equipos)}" value="Editar" /> -->
+<!--             </h:column> -->
+            
+<!--             <h:column> -->
+<!--                 <f:facet name="header">Acciones</f:facet> -->
+<!--                  <h:commandButton immediate="true" action="#{equipoBean.eliminar(_equipos.codigoEquipo)}" value="Eliminar" /> -->
+<!--             </h:column> -->
+            
+<!--             <f:facet name="footer"> -->
+            
+<!--             </f:facet> -->
+<!--         </h:dataTable> -->
+		
+<!-- 	</h:form> -->
+
+<!-- 	</ui:define> -->
+<!-- </ui:composition> -->
+<!-- </html> -->

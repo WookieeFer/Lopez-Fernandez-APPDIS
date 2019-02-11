@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="/blank.xhtml">
+
+<h:head>
+	<f:metadata>
+        <f:viewParam id="id" name="id" value="#{clienteBean.codigo}"/>
+        
+ 		<f:viewAction action="#{clienteBean.loadData()}" />
+ 	</f:metadata>
+</h:head> 
+
+<ui:define name="titulo">Crear Clientes</ui:define>
+
+	<ui:define name="contenido">
+
+<h:form>
+
+<h:panelGrid columns="3">
+	
+		
+		<h:outputLabel value="Nombre:" />
+		<h:inputText value="#{clienteBean.cliente.nombre}" id="txtNombre"/>
+		<h:message for="txtNombre"/>
+		
+		<h:outputLabel value="Apellido:" />
+		<h:inputText value="#{clienteBean.cliente.apellido}" id="txtApellido"/>
+		<h:message for="txtApellido"/>
+		
+		<h:outputLabel value="Email:" />
+		<h:inputText value="#{clienteBean.cliente.correo}" id="txtEmail"/>
+		<h:message for="txtEmail"/>
+		
+		<h:outputLabel value="Cédula:" />
+		<h:inputText value="#{clienteBean.cliente.cedula}" id="txtCedula"/>
+		<h:message for="txtCedula"/>
+		
+		<h:inputHidden value="#{clienteBean.editing}" />
+		
+		<h:commandButton action="#{clienteBean.registrar()}" value="Guardar" />
+	
+	</h:panelGrid>
+		
+		<h:dataTable var="_cliente" value="#{clienteBean.clientes}"
+            styleClass="simpletablestyle">
+            <h:column>
+                <f:facet name="header">Código</f:facet>
+                #{_cliente.codigoCliente}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre</f:facet>
+                #{_cliente.nombre}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Apellido</f:facet>
+                #{_cliente.apellido}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Correo</f:facet>
+                #{_cliente.correo}
+            </h:column>
+			<h:column>
+                <f:facet name="header">Cedula</f:facet>
+                #{_cliente.cedula}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Acciones</f:facet>
+                 <h:commandButton action="#{clienteBean.editar(_cliente)}" value="Editar" />
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Acciones</f:facet>
+                 <h:commandButton immediate="true" action="#{clienteBean.eliminar(_cliente.codigoCliente)}" value="Eliminar" />
+            </h:column>
+            
+            <f:facet name="footer">
+            
+            </f:facet>
+        </h:dataTable>
+        
+		
+		
+</h:form>
+</ui:define>
+</ui:composition>
+</html>

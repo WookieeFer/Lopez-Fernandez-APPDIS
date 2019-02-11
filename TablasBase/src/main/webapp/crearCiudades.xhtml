@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/blank.xhtml">
+
+	<h:head>
+		<f:metadata>
+			<f:viewParam id="id" name="id" value="#{ciudadBean.codigo}" />
+
+			<f:viewAction action="#{ciudadBean.loadData()}" />
+		</f:metadata>
+	</h:head>
+
+	<ui:define name="titulo">Crear Ciudades</ui:define>
+
+	<ui:define name="contenido">
+
+		<h:form>
+			<h:panelGrid columns="3" layout="grid">
+
+				<h:outputLabel value="Nombre:" />
+				<h:inputText value="#{ciudadBean.ciudad.nombre}" id="txtNombre" />
+				<h:message for="txtNombre" />
+
+				<h:outputLabel value="Provincia:" />
+				<h:inputText value="#{ciudadBean.ciudad.direccion}" id="txtDir" />
+				<h:message for="txtDir" />
+
+				<h:inputHidden value="#{ciudadBean.editing}" />
+				<h:commandButton action="#{ciudadBean.registrar()}"
+					value="Registrar" />
+
+			</h:panelGrid>
+
+
+
+			<h:dataTable var="_ciudad" value="#{ciudadBean.ciudades}"
+				styleClass="simpletablestyle">
+				<h:column>
+					<f:facet name="header">Codigo</f:facet>
+                #{_ciudad.codigoCiudad}
+            </h:column>
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+                #{_ciudad.nombre}
+            </h:column>
+				<h:column>
+					<f:facet name="header">Direccion</f:facet>
+                #{_ciudad.direccion}
+            </h:column>
+
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton immediate="true"
+						action="#{ciudadBean.editar(_ciudad)}" value="Editar" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton immediate="true"
+						action="#{ciudadBean.eliminar(_ciudad.codigoCiudad)}"
+						value="Eliminar" />
+				</h:column>
+
+
+				<f:facet name="footer">
+
+				</f:facet>
+			</h:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
